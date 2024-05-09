@@ -1,6 +1,7 @@
 import express, { Request, Response} from 'express';
 import usersRouter from "./routes/users/index";
 import categoriesRouter from "./routes/categories/index";
+import productsRouter from "./routes/products/index";
 import sequelize from "./sequelize";
 
 const app = express();
@@ -16,6 +17,7 @@ app.get('/', (req : Request, res : Response) => {
 
 app.use('/users', usersRouter);
 app.use('/categories', categoriesRouter);
+app.use('/products', productsRouter);
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
