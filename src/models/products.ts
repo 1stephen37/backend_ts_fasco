@@ -1,11 +1,20 @@
-import {Model, DataTypes, INTEGER, STRING} from 'sequelize';
+import {Model, DataTypes, INTEGER, STRING, FLOAT} from 'sequelize';
 import sequelize from '../sequelize';
 
 class Products extends Model {
     public id_product!: number;
     public id_category!: number;
     public name!: string;
+    public image!: string;
+    public designer!: string;
+    public review!: number;
+    public quantity!: number;
+    public color!: string;
+    public sale!: number;
     public status!: number;
+    public createdAt!: string | Date;
+    public updatedAt!: string | Date;
+    public images : string[] = [];
 }
 
 Products.init(
@@ -34,6 +43,22 @@ Products.init(
             type: STRING,
             allowNull: false,
         },
+        review: {
+            type: INTEGER,
+            allowNull: false,
+        },
+        quantity: {
+            type: INTEGER,
+            allowNull: false,
+        },
+        color: {
+            type: STRING,
+            allowNull: false,
+        },
+        sale: {
+            type: FLOAT,
+            allowNull: false,
+        },
         status: {
             type: INTEGER,
             allowNull: false,
@@ -52,7 +77,7 @@ Products.init(
     {
         sequelize,
         modelName: 'Products',
-        tableName: 'product',
+        tableName: 'products',
         timestamps: true,
         updatedAt: 'updatedAt',
         createdAt: 'createdAt',
