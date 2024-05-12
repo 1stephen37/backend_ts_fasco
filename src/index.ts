@@ -3,10 +3,12 @@ import usersRouter from "./routes/users/index";
 import categoriesRouter from "./routes/categories/index";
 import productsRouter from "./routes/products/index";
 import sequelize from "./sequelize";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 sequelize.authenticate()
     .then(() => console.log('Connected to the database.'))
     .catch((err) => console.log(err.message))

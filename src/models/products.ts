@@ -1,9 +1,10 @@
-import {Model, DataTypes, INTEGER, STRING, FLOAT} from 'sequelize';
+import {Model, DataTypes, INTEGER, STRING} from 'sequelize';
 import sequelize from '../sequelize';
 
 class Products extends Model {
     public id_product!: number;
     public id_category!: number;
+    public id_sale!: number;
     public name!: string;
     public image!: string;
     public designer!: string;
@@ -31,6 +32,13 @@ Products.init(
                 key: 'id_category', // Tên cột trong bảng categories mà bạn muốn liên kết đến
             },
         },
+        id_sale: {
+            type: INTEGER,
+            references: {
+                model: 'sales', // Tên bảng mà bạn muốn liên kết đến
+                key: 'id_sale', // Tên cột trong bảng categories mà bạn muốn liên kết đến
+            },
+        },
         name: {
             type: STRING,
             allowNull: false,
@@ -53,10 +61,6 @@ Products.init(
         },
         color: {
             type: STRING,
-            allowNull: false,
-        },
-        sale: {
-            type: FLOAT,
             allowNull: false,
         },
         status: {
