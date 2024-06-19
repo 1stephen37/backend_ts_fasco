@@ -14,6 +14,15 @@ export default class CategoriesController {
         }
 
     }
+
+    static async getCategoryById(req : Request, res : Response) {
+        try {
+            const id = req.params.id;
+
+        } catch (error : Error | any) {
+            res.status(500).json(error.message);
+        }
+    }
 }
 
 

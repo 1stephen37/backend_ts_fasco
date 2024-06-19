@@ -4,18 +4,21 @@ import sequelize from '../sequelize';
 class Products extends Model {
     public id_product!: number;
     public id_category!: number;
-    public id_sale!: number;
     public name!: string;
-    public image!: string;
     public designer!: string;
-    public review!: number;
-    public quantity!: number;
     public color!: string;
     public sale!: number;
     public status!: number;
+    public image! : string;
     public createdAt!: string | Date;
     public updatedAt!: string | Date;
+    public properties! : {
+        size : string;
+        price : number;
+        quantity : number;
+    }[];
     public images : string[] = [];
+    public category_name! : string;
 }
 
 Products.init(
@@ -32,18 +35,7 @@ Products.init(
                 key: 'id_category', // Tên cột trong bảng categories mà bạn muốn liên kết đến
             },
         },
-        id_sale: {
-            type: INTEGER,
-            references: {
-                model: 'sales', // Tên bảng mà bạn muốn liên kết đến
-                key: 'id_sale', // Tên cột trong bảng categories mà bạn muốn liên kết đến
-            },
-        },
         name: {
-            type: STRING,
-            allowNull: false,
-        },
-        image: {
             type: STRING,
             allowNull: false,
         },
@@ -51,16 +43,12 @@ Products.init(
             type: STRING,
             allowNull: false,
         },
-        review: {
-            type: INTEGER,
-            allowNull: false,
-        },
-        quantity: {
-            type: INTEGER,
-            allowNull: false,
-        },
         color: {
             type: STRING,
+            allowNull: false,
+        },
+        sale_off: {
+            type: INTEGER,
             allowNull: false,
         },
         status: {
